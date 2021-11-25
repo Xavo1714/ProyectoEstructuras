@@ -37,9 +37,12 @@ public class displayArray extends Application{
       borderPane.setCenter(hbox);
       borderPane.setBottom(botones);
       
+      //AQUI PRUEBO BORRAR LOS HIGH,LOW, FLECHAS Y CAMBIAR DE COLOR EL FONDO
       celda1.borrarTopArrow();
       celda2.background();
       celda3.borrarBottomArrow();
+      celda4.borrarHigh();
+      celda5.borrarLow();
    
       Scene scene = new Scene(borderPane);
       primaryStage.setTitle("Example");
