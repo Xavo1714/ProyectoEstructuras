@@ -1,9 +1,11 @@
+package project;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 
 public class node<T> extends Pane{
@@ -12,6 +14,11 @@ public class node<T> extends Pane{
    Line[] walls = new Line[4];
    Line[] topArrow = new Line[3];
    Line[] bottomArrow = new Line[3];
+   Rectangle capa = new Rectangle();
+   Text texto;
+   Text highText;
+   Text lowText;
+   Text pivotText;
    
    node(T e){
       this.element = e;
@@ -64,19 +71,30 @@ public class node<T> extends Pane{
          getChildren().add(walls[i]);
       }
       
-      Text texto = new Text(this.getWidth()/2-10,this.getHeight()*5.9/10,element.toString());
+      capa.setX(0);
+      capa.setY(this.getHeight()*5/10);
+      capa.yProperty().bind(this.heightProperty().multiply(5).divide(10));
+      capa.setWidth(this.getWidth());
+      capa.widthProperty().bind(this.widthProperty());
+      capa.setHeight(this.getHeight()*1.5/10);
+      capa.heightProperty().bind(this.heightProperty().multiply(1.5).divide(10));
+      capa.setFill(Color.WHITE);
+      
+      getChildren().add(capa);
+      
+      texto = new Text(this.getWidth()/2-10,this.getHeight()*5.9/10,element.toString());
       texto.xProperty().bind(this.widthProperty().divide(2).subtract(10));
       texto.yProperty().bind(this.heightProperty().multiply(5.9).divide(10));
       
-      Text highText = new Text(this.getWidth()/10,this.getHeight()/10,"HIGH");
+      highText = new Text(this.getWidth()/10,this.getHeight()/10,"HIGH");
       highText.xProperty().bind(this.widthProperty().divide(10));
       highText.yProperty().bind(this.heightProperty().divide(10));
       
-      Text lowText = new Text(this.getWidth()/10,this.getHeight()*1.7/10,"LOW");
+      lowText = new Text(this.getWidth()/10,this.getHeight()*1.7/10,"LOW");
       lowText.xProperty().bind(this.widthProperty().divide(10));
       lowText.yProperty().bind(this.heightProperty().multiply(1.7).divide(10));
       
-      Text pivotText = new Text(0,this.getHeight()*9.5/10,"PIVOT");
+      pivotText = new Text(0,this.getHeight()*9.5/10,"PIVOT");
       pivotText.yProperty().bind(this.heightProperty().multiply(9.5).divide(10));
       
       this.getChildren().addAll(texto,highText,lowText,pivotText);
@@ -124,22 +142,45 @@ public class node<T> extends Pane{
       for(int i=0;i<3;i++){
          topArrow[i].setStroke(Color.BLACK);
       }
+      pivotText.setFill(Color.BLACK);
    }
    
    public void borrarBottomArrow(){
       for(int i=0;i<3;i++){
          bottomArrow[i].setStroke(Color.WHITE);
       }
+      pivotText.setFill(Color.WHITE);
    }
    
    public void pintarBottomArrow(){
       for(int i=0;i<3;i++){
          bottomArrow[i].setStroke(Color.BLACK);
       }
+      
    }
    
-    public void background() {
-      setStyle("-fx-background-color: darkorchid;");
+   public void background() {
+      capa.setFill(Color.SKYBLUE);
+   }
+   
+   public void setBackgroundWhite() {
+      capa.setFill(Color.WHITE);
+   }
+   
+   public void pintarHigh(){
+      highText.setFill(Color.BLACK);
+   }
+   
+   public void borrarHigh(){
+      highText.setFill(Color.WHITE);
+   }
+   
+   public void pintarLow(){
+      lowText.setFill(Color.BLACK);
+   }
+   
+   public void borrarLow(){
+      lowText.setFill(Color.WHITE);
    }
    
 }
