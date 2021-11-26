@@ -42,11 +42,17 @@ public class Scene1Controller implements Initializable{
 		if(check(string)){
 			arrayNumbers = string.split(",");
 		}else{
-			Alert alert = new Alert(Alert.AlertType.ERROR);
-			
-			alert.setTitle("Error");
-			alert.setContentText("Error en la aplicacion");
-			alert.showAndWait();
+			if(string.length()==0){
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setContentText("Cadena Vacia");
+				alert.showAndWait();
+			}else{
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setContentText("Los valores deben estar separados\npor comas");
+				alert.showAndWait();
+			}
 			return;
 		}
 		//Verificacion de datos

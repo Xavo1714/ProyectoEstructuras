@@ -49,7 +49,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox alignment="CENTER" prefHeight="99.0" prefWidth="309.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <VBox fx:id="animationSpace" alignment="CENTER" prefHeight="99.0" prefWidth="309.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>
