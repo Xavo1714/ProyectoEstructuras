@@ -136,7 +136,7 @@ public class node<T> extends Pane{
    
    public void borrarTopArrow(){
       for(int i=0;i<3;i++){
-         topArrow[i].setStroke(Color.WHITE);
+         topArrow[i].setStroke(Color.TRANSPARENT);
       }
    }
    
@@ -149,9 +149,9 @@ public class node<T> extends Pane{
    
    public void borrarBottomArrow(){
       for(int i=0;i<3;i++){
-         bottomArrow[i].setStroke(Color.WHITE);
+         bottomArrow[i].setStroke(Color.TRANSPARENT);
       }
-      pivotText.setFill(Color.WHITE);
+      pivotText.setFill(Color.TRANSPARENT);
    }
    
    public void pintarBottomArrow(){
@@ -174,7 +174,7 @@ public class node<T> extends Pane{
    }
    
    public void borrarHigh(){
-      highText.setFill(Color.WHITE);
+      highText.setFill(Color.TRANSPARENT);
    }
    
    public void pintarLow(){
@@ -182,7 +182,7 @@ public class node<T> extends Pane{
    }
    
    public void borrarLow(){
-      lowText.setFill(Color.WHITE);
+      lowText.setFill(Color.TRANSPARENT);
    }
    
 }
