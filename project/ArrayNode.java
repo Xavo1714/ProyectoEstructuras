@@ -1,14 +1,25 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
-public class ArrayNode extends HBox{
+public class ArrayNode extends ArrayList<node<Integer>>{
 
     public ArrayNode(ArrayList<Integer> array){
         for(Integer n:array){
-            getChildren().add(new node<Integer>(n));
+            add(new node<Integer>(n));
         }
-        setAlignment(Pos.CENTER);
+    }
+
+    public Node getView(){
+        Iterator<node<Integer>> iterable =  iterator();
+        HBox aux = new HBox();
+        while(iterable.hasNext()){
+            aux.getChildren().add(iterable.next());
+        }
+        aux.setAlignment(Pos.CENTER);
+        return aux;
     }
 }

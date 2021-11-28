@@ -122,12 +122,22 @@ public class node<T> extends Pane{
       for(int i=0;i<3;i++){
          getChildren().add(bottomArrow[i]);
       }
+      bottomArrow[0].setOpacity(0);
+      bottomArrow[1].setOpacity(0);
+      bottomArrow[2].setOpacity(0);
+      topArrow[0].setOpacity(0);
+      topArrow[1].setOpacity(0);
+      topArrow[2].setOpacity(0);
+      highText.setOpacity(0);
+      pivotText.setOpacity(0);
+      lowText.setOpacity(0);
 
-            
+      
    }
    
    public void setElement(T o){
       element = o;
+      texto.setText(String.valueOf(o));
    }
    
    public T getElement(){
@@ -136,29 +146,29 @@ public class node<T> extends Pane{
    
    public void borrarTopArrow(){
       for(int i=0;i<3;i++){
-         topArrow[i].setStroke(Color.WHITE);
+         topArrow[i].setOpacity(0);
       }
    }
    
    public void pintarTopArrow(){
       for(int i=0;i<3;i++){
-         topArrow[i].setStroke(Color.BLACK);
+         topArrow[i].setOpacity(1);
       }
-      pivotText.setFill(Color.BLACK);
+      //pivotText.setFill(Color.BLACK);
    }
    
    public void borrarBottomArrow(){
       for(int i=0;i<3;i++){
-         bottomArrow[i].setStroke(Color.WHITE);
+         bottomArrow[i].setOpacity(0);
       }
-      pivotText.setFill(Color.WHITE);
+      pivotText.setOpacity(0);
    }
    
    public void pintarBottomArrow(){
       for(int i=0;i<3;i++){
-         bottomArrow[i].setStroke(Color.BLACK);
+         bottomArrow[i].setOpacity(1);
       }
-      
+      pivotText.setOpacity(1);
    }
    
    public void background() {
@@ -170,19 +180,40 @@ public class node<T> extends Pane{
    }
    
    public void pintarHigh(){
-      highText.setFill(Color.BLACK);
+      highText.setOpacity(1);
    }
    
    public void borrarHigh(){
-      highText.setFill(Color.WHITE);
+      highText.setOpacity(0);
    }
    
    public void pintarLow(){
-      lowText.setFill(Color.BLACK);
+      lowText.setOpacity(1);
    }
    
    public void borrarLow(){
-      lowText.setFill(Color.WHITE);
+      lowText.setOpacity(0);
    }
+
+   public void pintarLowFull(){
+      pintarLow();
+      pintarTopArrow();
+   }
+
+   public void borrarLowFull(){
+      borrarLow();
+      borrarTopArrow();
+   }
+
+   public void pintarHighFull(){
+      pintarHigh();
+      pintarTopArrow();
+   }
+
+   public void borrarHighFull(){
+      borrarHigh();
+      borrarTopArrow();
+   }
+   
    
 }

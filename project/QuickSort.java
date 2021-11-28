@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class QuickSort {
   public static void quickSort(int[] list, ArrayList<String> a, ArrayList<Integer> b) {
@@ -76,7 +77,8 @@ public class QuickSort {
     ArrayList<String> claves = new ArrayList<>();
     ArrayList<Integer> valores = new ArrayList<>();
   
-    int[] list = {13, 2, 5, 5, 8, 1, 4, 2, 3, 6};
+    int[] list = {2,4,1,5};
+
     quickSort(list,claves,valores);
     for (int i = 0; i < list.length; i++)
       System.out.print(list[i] + " ");
@@ -97,6 +99,5 @@ public class QuickSort {
     for(int i=0;i<valores1.length;i++){
       System.out.print(valores1[i] + " ");
     }
-    
   }
 }

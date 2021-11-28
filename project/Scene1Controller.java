@@ -22,6 +22,7 @@ public class Scene1Controller implements Initializable{
 	@FXML private Spinner<Integer> mySpinner;
 	@FXML private Button quickSortButton;
 	@FXML private TextField textField;
+
 	@FXML
 	public void initialize(URL arg0,ResourceBundle arg1){
 		 SpinnerValueFactory<Integer> valueFactory = //
@@ -58,7 +59,7 @@ public class Scene1Controller implements Initializable{
 			aux.add(Integer.parseInt(i));
 		}
 		Main.setNumbers(aux);
-		System.out.println("Chao"+ Main.getNumbers());
+		System.out.println(Main.getNumbers());
 
 		// Definir la nueva escena y stage segun el fxml
 		Parent scene2 = FXMLLoader.load(getClass().getResource("Scene2.fxml"));

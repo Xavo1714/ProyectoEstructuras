@@ -15,14 +15,14 @@
          <children>
             <HBox alignment="CENTER" prefHeight="112.0" prefWidth="600.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" text="Anterior Paso" />
-                  <Button mnemonicParsing="false" text="Siguiente Paso" />
+                  <Button mnemonicParsing="false" onAction="#previousStep" text="Anterior Paso" />
+                  <Button mnemonicParsing="false" onAction="#nextStep" text="Siguiente Paso" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" text="Resetear" />
-                  <Button mnemonicParsing="false" text="Saltar Animacion" />
+                  <Button mnemonicParsing="false" onAction="#returnStart" text="Resetear" />
+                  <Button mnemonicParsing="false" onAction="#jumpToEnd" text="Saltar Animacion" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="123.0" prefWidth="600.0">
