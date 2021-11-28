@@ -3,16 +3,12 @@ import java.util.Stack;
 
 public class QuickSort {
   public static void quickSort(int[] list, ArrayList<String> a, ArrayList<Integer> b) {
-    a.add("pivote");
-    b.add(0);
     quickSort(list, 0, list.length - 1,a,b);
   }
 
   private static void quickSort(int[] list, int first, int last, ArrayList<String> a, ArrayList<Integer> b) {
     if (last > first) {
       int pivotIndex = partition(list, first, last,a,b);
-      a.add("pivot");
-      b.add(pivotIndex);
       quickSort(list, first, pivotIndex - 1,a,b);
       quickSort(list, pivotIndex + 1, last,a,b);
     }
@@ -21,6 +17,8 @@ public class QuickSort {
   /** Partition the array list[first..last] */
   private static int partition(int[] list, int first, int last, ArrayList<String> a, ArrayList<Integer> b) {
     int pivot = list[first]; // Choose the first element as the pivot
+    a.add("pivot");
+    b.add(first);
     int low = first + 1; // Index for forward search
     a.add("low");
     b.add(low);
@@ -32,8 +30,10 @@ public class QuickSort {
       // Search forward from left
       while (low <= high && list[low] <= pivot){
         low++;
-        a.add("low");
-        b.add(low);
+        if(low<=high){
+         a.add("low");
+         b.add(low);
+        }
       }
 
       // Search backward from right
@@ -77,7 +77,7 @@ public class QuickSort {
     ArrayList<String> claves = new ArrayList<>();
     ArrayList<Integer> valores = new ArrayList<>();
   
-    int[] list = {2,4,1,5};
+    int[] list = {287,4,880,323,797,200,5,409};
 
     quickSort(list,claves,valores);
     for (int i = 0; i < list.length; i++)
@@ -91,13 +91,8 @@ public class QuickSort {
     valores1 = valores.toArray(valores1);
     
     for(int i=0;i<claves1.length;i++){
-      System.out.print(claves1[i] + " ");
+      System.out.print(claves1[i] + " " + "\t"+valores1[i] + "\n");
     }
     
-    System.out.print("\n");
-    
-    for(int i=0;i<valores1.length;i++){
-      System.out.print(valores1[i] + " ");
-    }
   }
 }
