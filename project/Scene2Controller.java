@@ -86,15 +86,13 @@ public class Scene2Controller implements Initializable{
 		previusSteps.add(aux);
 
 
-		if(aux.get(0).equals("pivot") || aux.get(0).equals("pivote")){
+		if(aux.get(0).equals("pivot")){
 			for(node<Integer> i:arrayN){
 				i.borrarHighFull();
 				i.borrarLowFull();
 				i.borrarBottomArrow();
 			}
-			if(nextSteps.peek().get(0).equals("low")){
-				pivot = Integer.parseInt(nextSteps.peek().get(1))-1;
-			}
+         pivot = Integer.parseInt(aux.get(1));
 			arrayN.get(pivot).pintarBottomArrow();
 
 		}else if(aux.get(0).equals("low")){
@@ -111,7 +109,7 @@ public class Scene2Controller implements Initializable{
 		}else if(aux.get(0).equals("high")){
 			arrayN.get(Integer.parseInt(aux.get(1))).pintarHighFull();
 			high = Integer.parseInt(aux.get(1));
-			if(!(Integer.parseInt(aux.get(1)) == arrayN.size())){
+			if(!(Integer.parseInt(aux.get(1)) >= arrayN.size()-1)){
 				if((arrayN.get(Integer.parseInt(aux.get(1))+1)).highText.getOpacity() == 1){
 					if(arrayN.get(Integer.parseInt(aux.get(1))+1).lowText.getOpacity() == 1){
 						arrayN.get(Integer.parseInt(aux.get(1))+1).borrarHigh();
