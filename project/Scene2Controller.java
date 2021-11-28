@@ -1,11 +1,8 @@
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.Stack;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Scene2Controller implements Initializable{
@@ -66,14 +64,15 @@ public class Scene2Controller implements Initializable{
 	int high = 0;
 	int pivot = 0;
 
-	void printLHP(){
-		System.out.println("low "+low );
-		System.out.println("high "+high );
-		System.out.println("pivot "+pivot );
-	}
 
 	@FXML
 	private void nextStep(){
+
+		if(nextSteps.size() == 0){
+			for(node<Integer> i : arrayN){
+				i.capa.setFill(Color.CHARTREUSE);
+			}
+		}
 
 		if (nextSteps.empty()){
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -82,30 +81,69 @@ public class Scene2Controller implements Initializable{
 			alert.showAndWait();
 			return;
 		}
+
 		ArrayList<String> aux = nextSteps.pop();
 		previusSteps.add(aux);
+
+
 		if(aux.get(0).equals("pivot") || aux.get(0).equals("pivote")){
-			arrayN.get(Integer.parseInt(aux.get(1))).pintarBottomArrow();
+			for(node<Integer> i:arrayN){
+				i.borrarHighFull();
+				i.borrarLowFull();
+				i.borrarBottomArrow();
+			}
 			if(nextSteps.peek().get(0).equals("low")){
 				pivot = Integer.parseInt(nextSteps.peek().get(1))-1;
 			}
+			arrayN.get(pivot).pintarBottomArrow();
+
 		}else if(aux.get(0).equals("low")){
 			arrayN.get(Integer.parseInt(aux.get(1))).pintarLowFull();
 			low = Integer.parseInt(aux.get(1));
+			if((arrayN.get(Integer.parseInt(aux.get(1))-1)).lowText.getOpacity() == 1){
+				if(arrayN.get(Integer.parseInt(aux.get(1))-1).highText.getOpacity() == 1){
+					arrayN.get(Integer.parseInt(aux.get(1))-1).borrarLow();
+				}else {
+					arrayN.get(Integer.parseInt(aux.get(1))-1).borrarLowFull();
+				}
+			}
+
 		}else if(aux.get(0).equals("high")){
 			arrayN.get(Integer.parseInt(aux.get(1))).pintarHighFull();
 			high = Integer.parseInt(aux.get(1));
+			if(!(Integer.parseInt(aux.get(1)) == arrayN.size())){
+				if((arrayN.get(Integer.parseInt(aux.get(1))+1)).highText.getOpacity() == 1){
+					if(arrayN.get(Integer.parseInt(aux.get(1))+1).lowText.getOpacity() == 1){
+						arrayN.get(Integer.parseInt(aux.get(1))+1).borrarHigh();
+					}else {
+						arrayN.get(Integer.parseInt(aux.get(1))+1).borrarHighFull();
+					}
+				}
+			}
+			if(high == pivot){
+				arrayN.get(high).capa.setFill(Color.CHARTREUSE);
+			}
+
+
 		}else if(aux.get(1).equals("-1")){
 			int s = arrayN.get(high).getElement();
 			arrayN.get(high).setElement(arrayN.get(low).getElement());
 			arrayN.get(low).setElement(s);
+
 		}else if(aux.get(1).equals("-2")){
 			int s = arrayN.get(high).getElement();
 			arrayN.get(high).setElement(arrayN.get(pivot).getElement());
 			arrayN.get(pivot).setElement(s);
-			arrayN.get(high).background();
+			arrayN.get(high).capa.setFill(Color.CHARTREUSE);
+
+			for(node<Integer> i:arrayN){
+				i.borrarHighFull();
+				i.borrarLowFull();
+				i.borrarBottomArrow();
+			}
 		};
 
+		
 	}
 
 	@FXML
@@ -118,13 +156,7 @@ public class Scene2Controller implements Initializable{
 		}
 		ArrayList<String> aux = previusSteps.pop();
 		nextSteps.add(aux);
-		if(aux.get(0)=="pivot" || aux.get(0)=="pivote"){
-			arrayN.get(Integer.parseInt(aux.get(1))).borrarBottomArrow();
-		}else if(aux.get(0).equals("low")){
-			arrayN.get(Integer.parseInt(aux.get(1))).borrarLowFull();
-		}else if(aux.get(0).equals("high")){
-			arrayN.get(Integer.parseInt(aux.get(1))).borrarHighFull();
-		};
+		
 	}
 
 	@FXML
